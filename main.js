@@ -23,7 +23,7 @@ const supportedImgExts=[
     'svg',
     'webp',
 ]
-export async function a(unit,Compiler){
+export const a=async (unit,Compiler)=>{
     const element=document.createElement('a')
     let {src,href}=unit.options
     if(src===true){
