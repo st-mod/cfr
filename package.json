@@ -1,3 +1,20 @@
 {
-    "version": "0.0.1"
+  "name": "@ddu6/cfr",
+  "version": "0.0.1",
+  "description": "A stdn module for cross file reference",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st-mod/cfr.git"
+  },
+  "author": "ddu6",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/st-mod/cfr/issues"
+  },
+  "homepage": "https://github.com/st-mod/cfr#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=8.0.0"
+  }
 }
