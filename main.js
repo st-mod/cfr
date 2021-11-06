@@ -23,7 +23,7 @@ const supportedImgExts=[
     'svg',
     'webp',
 ]
-export const a=async (unit,Compiler)=>{
+export const a=async (unit,compiler)=>{
     const element=document.createElement('a')
     let {src,href}=unit.options
     if(src===true){
@@ -39,7 +39,7 @@ export const a=async (unit,Compiler)=>{
     if(typeof href==='string'){
         if(!href.startsWith('#')){
             element.target='_blank'
-            const url=new URL(href,Compiler.context.dir)
+            const url=new URL(href,compiler.context.dir)
             if(url.origin.endsWith('.vscode-resource.vscode-webview.net')){
                 const ext=url.pathname.replace(/^.*\./,'')
                 if(supportedCodeExts.includes(ext)){
@@ -63,7 +63,7 @@ export const a=async (unit,Compiler)=>{
         }
     }else if(typeof src==='string'){
         element.target='_blank'
-        const url=new URL(src,Compiler.context.dir)
+        const url=new URL(src,compiler.context.dir)
         element.href='?src='+encodeURIComponent(url.href)+url.hash
         if(window.openSrc){
             element.addEventListener('click',e=>{
@@ -72,6 +72,6 @@ export const a=async (unit,Compiler)=>{
             })
         }
     }
-    element.append(await Compiler.compileInlineSTDN(unit.children))
+    element.append(await compiler.compileInlineSTDN(unit.children))
     return element
 }
