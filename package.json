@@ -1,6 +1,6 @@
 {
   "name": "@ddu6/cfr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A stdn module for cross file reference",
   "main": "main.js",
   "repository": {
