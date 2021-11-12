@@ -7,17 +7,12 @@
     "type": "git",
     "url": "git+https://github.com/st-mod/cfr.git"
   },
-  "author": "ddu6",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/st-mod/cfr/issues"
+  "dependencies": {
+    "@ddu6/stc": "^0.3.12"
   },
-  "homepage": "https://github.com/st-mod/cfr#readme",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=8.0.0"
-  },
-  "dependencies": {
-    "@ddu6/stc": "^0.3.12"
   }
 }
