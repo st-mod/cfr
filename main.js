@@ -1,75 +1,31 @@
-const supportedCodeExts=[
-    'css',
-    'html',
-    'js',
-    'json',
-    'md',
-    'stdn',
-    'ston',
-    'ts',
-    'txt',
-    'urls',
-]
-const supportedImgExts=[
-    'apng',
-    'avif',
-    'gif',
-    'jpg',
-    'jpeg',
-    'jfif',
-    'pjpeg',
-    'pjp',
-    'png',
-    'svg',
-    'webp',
-]
 export const a=async (unit,compiler)=>{
     const element=document.createElement('a')
-    let {src,href}=unit.options
-    if(src===true){
-        src=''
-    }else if(typeof src==='number'){
-        src=src.toString()
-    }
+    let {href,src}=unit.options
     if(href===true){
         href=''
     }else if(typeof href==='number'){
         href=href.toString()
+    }
+    if(src===true){
+        src=''
+    }else if(typeof src==='number'){
+        src=src.toString()
     }
     if(typeof href==='string'){
         if(!href.startsWith('#')){
             element.target='_blank'
             const url=new URL(href,compiler.context.dir)
             if(url.origin.endsWith('.vscode-resource.vscode-webview.net')){
-                const ext=url.pathname.replace(/^.*\./,'')
-                if(supportedCodeExts.includes(ext)){
-                    if(window.openCode){
-                        element.href=''
-                        element.addEventListener('click',e=>{
-                            e.preventDefault()
-                            openCode(url.href,ext)
-                        })
-                    }
-                }else if(supportedImgExts.includes(ext)){
-                    if(window.openImg){
-                        element.href=''
-                        element.addEventListener('click',e=>{
-                            e.preventDefault()
-                            openImg(url.href)
-                        })
-                    }
-                }
+                element.href=`command:vscode.open?${encodeURIComponent(JSON.stringify([{scheme:'file',path:url.pathname},-2]))}`
             }
         }
     }else if(typeof src==='string'){
         element.target='_blank'
         const url=new URL(src,compiler.context.dir)
-        element.href='?src='+encodeURIComponent(url.href)+url.hash
-        if(window.openSrc){
-            element.addEventListener('click',e=>{
-                e.preventDefault()
-                openSrc(url.href,decodeURIComponent(url.hash).slice(1))
-            })
+        if(url.origin.endsWith('.vscode-resource.vscode-webview.net')){
+            element.href=`command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname]))}`
+        }else{
+            element.href=`?src=${encodeURIComponent(url.href)}${url.hash}`
         }
     }
     element.append(await compiler.compileInlineSTDN(unit.children))
