@@ -12,6 +12,7 @@ export const a=async (unit,compiler)=>{
         src=src.toString()
     }
     if(typeof href==='string'){
+        element.textContent=href
         if(!href.startsWith('#')){
             element.target='_blank'
             const url=new URL(href,compiler.context.dir)
@@ -21,6 +22,7 @@ export const a=async (unit,compiler)=>{
         }
     }else if(typeof src==='string'){
         element.target='_blank'
+        element.textContent=src
         const url=new URL(src,compiler.context.dir)
         if(url.origin.endsWith('.vscode-resource.vscode-webview.net')){
             element.href=`command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname]))}`
@@ -28,6 +30,9 @@ export const a=async (unit,compiler)=>{
             element.href=`?src=${encodeURIComponent(url.href)}${url.hash}`
         }
     }
-    element.append(await compiler.compileInlineSTDN(unit.children))
+    if(unit.children.length>0){
+        element.innerHTML=''
+        element.append(await compiler.compileInlineSTDN(unit.children))
+    }
     return element
 }
