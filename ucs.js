@@ -25,7 +25,7 @@ export const a=async (unit,compiler)=>{
         element.textContent=src
         const url=new URL(src,compiler.context.dir)
         if(url.origin.endsWith('.vscode-resource.vscode-webview.net')){
-            element.href=`command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname]))}`
+            element.href=`command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname,undefined,undefined,decodeURIComponent(url.hash.slice(1))]))}`
         }else{
             element.href=`?src=${encodeURIComponent(url.href)}${url.hash}`
         }
