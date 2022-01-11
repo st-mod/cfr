@@ -27,7 +27,7 @@ export const a = async (unit, compiler) => {
         if (url.origin.endsWith('.vscode-resource.vscode-webview.net')) {
             element.href = `command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname, undefined, undefined, decodeURIComponent(url.hash.slice(1))]))}`
         } else {
-            element.href = `?src=${encodeURIComponent(url.href)}${url.hash}`
+            element.href = `https://st-org.github.io/?src=${encodeURIComponent(url.href)}${url.hash}`
         }
     }
     if (unit.children.length > 0) {
