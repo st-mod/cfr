@@ -8,7 +8,7 @@
     "url": "git+https://github.com/st-mod/cfr.git"
   },
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@ddu6/stc": "^0.19.1"
   },
   "engines": {
