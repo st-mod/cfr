@@ -17,7 +17,7 @@ export const a = async (unit, compiler) => {
             element.target = '_blank'
             const url = new URL(compiler.context.urlToAbsURL(href, unit))
             if (url.origin.endsWith('.vscode-resource.vscode-webview.net')) {
-                element.href = `command:vscode.open?${encodeURIComponent(JSON.stringify([{scheme: 'file', path: url.pathname}, -2]))}`
+                element.href = `command:vscode.open?${encodeURIComponent(JSON.stringify([{scheme: 'file', path: url.pathname}, {viewColumn: -2}]))}`
             }
         }
     } else if (typeof src === 'string') {
