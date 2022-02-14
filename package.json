@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@ddu6/stc": "^0.26.1"
+    "@ddu6/stc": "^0.28.0"
   },
   "engines": {
     "node": ">=14.0.0",
