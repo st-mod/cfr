@@ -16,7 +16,10 @@ export const a = async (unit, compiler) => {
         if (!href.startsWith('#')) {
             element.target = '_blank'
             const url = new URL(compiler.context.urlToAbsURL(href, unit))
-            if (url.origin.endsWith('.vscode-resource.vscode-webview.net')) {
+            if (
+                url.origin.endsWith('.vscode-resource.vscode-cdn.net')
+                || url.origin.endsWith('.vscode-resource.vscode-webview.net')
+            ) {
                 element.href = `command:vscode.open?${encodeURIComponent(JSON.stringify([{scheme: 'file', path: url.pathname}, {viewColumn: -2}]))}`
             }
         }
@@ -24,7 +27,10 @@ export const a = async (unit, compiler) => {
         element.target = '_blank'
         element.textContent = src
         const url = new URL(compiler.context.urlToAbsURL(src, unit))
-        if (url.origin.endsWith('.vscode-resource.vscode-webview.net')) {
+        if (
+            url.origin.endsWith('.vscode-resource.vscode-cdn.net')
+            || url.origin.endsWith('.vscode-resource.vscode-webview.net')
+        ) {
             element.href = `command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname, undefined, undefined, decodeURIComponent(url.hash.slice(1))]))}`
         } else {
             element.href = `https://st-org.github.io/?src=${encodeURIComponent(url.href)}${url.hash}`
