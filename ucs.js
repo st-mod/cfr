@@ -33,7 +33,14 @@ export const a = async (unit, compiler) => {
         ) {
             element.href = `command:st-lang.preview-path?${encodeURIComponent(JSON.stringify([url.pathname, undefined, undefined, decodeURIComponent(url.hash.slice(1))]))}`
         } else {
-            element.href = `https://st-org.github.io/?src=${encodeURIComponent(url.href)}${url.hash}`
+            const {hash} = url
+            url.hash = ''
+            let {href} = url
+            const dir = new URL('.', new URL(document.documentElement.dataset.src ?? '', location.href)).href
+            if (href.startsWith(dir)) {
+                href = href.slice(dir.length)
+            }
+            element.href = `https://st-org.github.io/?src=${encodeURIComponent(href)}${hash}`
         }
     }
     if (unit.children.length > 0) {
