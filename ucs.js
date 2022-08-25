@@ -39,8 +39,10 @@ export const a = async (unit, compiler) => {
             const dir = new URL('.', new URL(document.documentElement.dataset.src ?? '', location.href)).href
             if (href.startsWith(dir)) {
                 href = href.slice(dir.length)
+                element.href = `${location.origin}${location.pathname}?src=${encodeURIComponent(href)}${hash}`
+            } else {
+                element.href = `https://st-org.github.io/?src=${encodeURIComponent(href)}${hash}`
             }
-            element.href = `https://st-org.github.io/?src=${encodeURIComponent(href)}${hash}`
         }
     }
     if (unit.children.length > 0) {
